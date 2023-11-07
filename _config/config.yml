@@ -1,3 +1,6 @@
 ---
 Name: goldfinch-component-brands
 ---
+Goldfinch\Component\Brands\Admin\BrandsAdmin:
+  extensions:
+    - Goldfinch\Helpers\Extensions\BlocksAdminExtension
