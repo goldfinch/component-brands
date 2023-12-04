@@ -2,10 +2,12 @@
 
 namespace Goldfinch\Component\Brands\Models;
 
-use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Assets\Image;
+use gorriecoe\Link\Models\Link;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Forms\TextField;
+use gorriecoe\LinkField\LinkField;
+use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use Goldfinch\FocusPointExtra\Forms\UploadFieldWithExtra;
 
@@ -23,6 +25,7 @@ class BrandItem extends DataObject
 
     private static $has_one = [
         'Image' => Image::class,
+        'ALink' => Link::class,
     ];
 
     private static $owns = [
@@ -63,6 +66,7 @@ class BrandItem extends DataObject
             'Image',
             'Name',
             'Text',
+            'ALinkID',
             'Disabled',
         ]);
 
@@ -77,6 +81,7 @@ class BrandItem extends DataObject
                 ...UploadFieldWithExtra::create('Image', 'Image', $fields, $this)->getFields(),
                 ...[
                     HTMLEditorField::create('Text', 'Text'),
+                    LinkField::create('ALink', 'Link', $this),
                     CheckboxField::create('Disabled','Disabled')->setDescription('hide this item from the list'),
                 ],
             ]
