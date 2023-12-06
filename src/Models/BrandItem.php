@@ -55,7 +55,6 @@ class BrandItem extends DataObject
     private static $field_descriptions = [];
     private static $required_fields = [
         'Name',
-        'Text',
     ];
 
     public function getCMSFields()
