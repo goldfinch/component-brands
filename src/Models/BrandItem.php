@@ -12,6 +12,7 @@ use SilverStripe\Forms\CheckboxField;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use Goldfinch\FocusPointExtra\Forms\UploadFieldWithExtra;
+use SilverStripe\ORM\FieldType\DBHTMLText;
 
 class BrandItem extends DataObject
 {
@@ -23,6 +24,7 @@ class BrandItem extends DataObject
         'Name' => 'Varchar',
         'Text' => 'HTMLText',
         'Disabled' => 'Boolean',
+        'SortOrder' => 'Int',
     ];
 
     private static $has_one = [
@@ -45,6 +47,7 @@ class BrandItem extends DataObject
     // private static $defaults = [];
 
     private static $summary_fields = [
+        'getLogo' => 'Logo',
         'Name' => 'Name',
         'Text.Summary' => 'Text',
         'Disabled.NiceAsBoolean' => 'Disabled',
@@ -60,6 +63,22 @@ class BrandItem extends DataObject
     private static $required_fields = [
         'Name',
     ];
+
+    public function getLogo()
+    {
+        $html = DBHTMLText::create();
+
+        if ($this->File()->exists())
+        {
+            $html->setValue('<img src="' . $this->File()->getURL() . '" alt="' . $this->File()->Title . '" width="120">');
+        }
+        else if ($this->Image()->exists())
+        {
+            $html->setValue('<img src="' . $this->Image()->getURL() . '" alt="' . $this->Image()->Title . '" width="120">');
+        }
+
+        return $html;
+    }
 
     public function getCMSFields()
     {
@@ -92,7 +111,7 @@ class BrandItem extends DataObject
                 ],
                 ...$uploadFields,
                 ...[
-                    UploadField::create('File', 'SVG File')->setAllowedExtensions('svg'),
+                    UploadField::create('File', 'SVG File')->setAllowedExtensions('svg')->setDescription('has priority over the image field'),
                     HTMLEditorField::create('Text', 'Text'),
                     LinkField::create('ALink', 'Link', $this),
                     CheckboxField::create('Disabled','Disabled')->setDescription('hide this item from the list'),
