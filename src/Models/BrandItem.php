@@ -2,12 +2,14 @@
 
 namespace Goldfinch\Component\Brands\Models;
 
+use SilverStripe\Assets\File;
 use SilverStripe\Assets\Image;
 use gorriecoe\Link\Models\Link;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Forms\TextField;
 use gorriecoe\LinkField\LinkField;
 use SilverStripe\Forms\CheckboxField;
+use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use Goldfinch\FocusPointExtra\Forms\UploadFieldWithExtra;
 
@@ -25,11 +27,13 @@ class BrandItem extends DataObject
 
     private static $has_one = [
         'Image' => Image::class,
+        'File' => File::class,
         'ALink' => Link::class,
     ];
 
     private static $owns = [
         'Image',
+        'File',
     ];
 
     // private static $belongs_to = [];
@@ -63,13 +67,22 @@ class BrandItem extends DataObject
 
         $fields->removeByName([
             'Image',
+            'File',
             'Name',
             'Text',
             'ALinkID',
             'Disabled',
         ]);
 
-        // dd($fields);
+        $uploadFields = UploadFieldWithExtra::create('Image', 'Image', $fields, $this)->getFields();
+
+        // foreach($uploadFields as $fiKey => $fi)
+        // {
+        //     if (get_class($fi) == UploadField::class)
+        //     {
+        //         $uploadFields[$fiKey] = $fi->setAllowedExtensions(['svg']);
+        //     }
+        // }
 
         $fields->addFieldsToTab(
             'Root.Main',
@@ -77,8 +90,9 @@ class BrandItem extends DataObject
                 ...[
                     TextField::create('Name', 'Name'),
                 ],
-                ...UploadFieldWithExtra::create('Image', 'Image', $fields, $this)->getFields(),
+                ...$uploadFields,
                 ...[
+                    UploadField::create('File', 'SVG File')->setAllowedExtensions('svg'),
                     HTMLEditorField::create('Text', 'Text'),
                     LinkField::create('ALink', 'Link', $this),
                     CheckboxField::create('Disabled','Disabled')->setDescription('hide this item from the list'),
