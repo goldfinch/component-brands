@@ -17,6 +17,7 @@
         "goldfinch/focuspoint-extra": "^1.0",
         "silverstripe/tagfield": "^3.0",
         "jonom/silverstripe-someconfig": "^1.0",
+        "gorriecoe/silverstripe-linkfield": "^1.1",
         "dnadesign/silverstripe-elemental": "^5.0"
     },
     "autoload": {
