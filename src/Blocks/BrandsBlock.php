@@ -19,7 +19,7 @@ class BrandsBlock extends BaseElement
 
     private static $inline_editable = false;
     private static $description = '';
-    private static $icon = 'bi-google-play';
+    private static $icon = 'font-icon-circle-star';
     // private static $disable_pretty_anchor_name = false;
     // private static $displays_title_in_template = true;
 
