@@ -15,7 +15,7 @@ class BrandsAdmin extends ModelAdmin
 
     private static $url_segment = 'brands';
     private static $menu_title = 'Brands';
-    private static $menu_icon_class = 'bi-google-play';
+    private static $menu_icon_class = 'font-icon-circle-star';
     // private static $menu_priority = -0.5;
 
     private static $managed_models = [
