@@ -119,6 +119,9 @@ class BrandItem extends DataObject
             ]
         );
 
+        $fields->dataFieldByName('Image')->setFolderName('brands');
+        $fields->dataFieldByName('File')->setFolderName('brands');
+
         return $fields;
     }
 
