@@ -4,10 +4,10 @@ namespace Goldfinch\Component\Brands\Models;
 
 use SilverStripe\Assets\File;
 use SilverStripe\Assets\Image;
-use gorriecoe\Link\Models\Link;
+use SilverStripe\LinkField\Models\Link;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Forms\TextField;
-use gorriecoe\LinkField\LinkField;
+use SilverStripe\AnyField\Form\AnyField;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
@@ -113,7 +113,7 @@ class BrandItem extends DataObject
                 ...[
                     UploadField::create('File', 'SVG File')->setAllowedExtensions('svg')->setDescription('has priority over the image field'),
                     HTMLEditorField::create('Text', 'Text'),
-                    LinkField::create('ALink', 'Link', $this),
+                    AnyField::create('ALink', 'Link'),
                     CheckboxField::create('Disabled','Disabled')->setDescription('hide this item from the list'),
                 ],
             ]
