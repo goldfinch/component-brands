@@ -11,7 +11,7 @@ use SilverStripe\AnyField\Form\AnyField;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
-use Goldfinch\FocusPointExtra\Forms\UploadFieldWithExtra;
+use Goldfinch\ImageEditor\Forms\EditableUploadField;
 use SilverStripe\ORM\FieldType\DBHTMLText;
 
 class BrandItem extends DataObject
@@ -93,7 +93,7 @@ class BrandItem extends DataObject
             'Disabled',
         ]);
 
-        $uploadFields = UploadFieldWithExtra::create('Image', 'Image', $fields, $this)->getFields();
+        $uploadFields = EditableUploadField::create('Image', 'Image', $fields, $this)->getFields();
 
         // foreach($uploadFields as $fiKey => $fi)
         // {
