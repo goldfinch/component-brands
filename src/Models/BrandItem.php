@@ -4,14 +4,8 @@ namespace Goldfinch\Component\Brands\Models;
 
 use SilverStripe\Assets\File;
 use SilverStripe\Assets\Image;
-use SilverStripe\LinkField\Models\Link;
 use SilverStripe\ORM\DataObject;
-use SilverStripe\Forms\TextField;
-use SilverStripe\AnyField\Form\AnyField;
-use SilverStripe\Forms\CheckboxField;
-use SilverStripe\AssetAdmin\Forms\UploadField;
-use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
-use Goldfinch\ImageEditor\Forms\EditableUploadField;
+use SilverStripe\LinkField\Models\Link;
 use SilverStripe\ORM\FieldType\DBHTMLText;
 
 class BrandItem extends DataObject
@@ -38,31 +32,31 @@ class BrandItem extends DataObject
         'File',
     ];
 
-    // private static $belongs_to = [];
-    // private static $has_many = [];
-    // private static $belongs_many_many = [];
-    // private static $default_sort = null;
-    // private static $indexes = null;
-    // private static $casting = [];
-    // private static $defaults = [];
-
     private static $summary_fields = [
         'getLogo' => 'Logo',
         'Name' => 'Name',
         'Text.Summary' => 'Text',
         'Disabled.NiceAsBoolean' => 'Disabled',
     ];
-    // private static $field_labels = [];
-    // private static $searchable_fields = [];
 
-    // private static $cascade_deletes = [];
-    // private static $cascade_duplicates = [];
+    public function harvest(Harvest $harvest)
+    {
+        $harvest->require(['Name']);
 
-    // * goldfinch/helpers
-    private static $field_descriptions = [];
-    private static $required_fields = [
-        'Name',
-    ];
+        $harvest->fields([
+            'Root.Main' => [
+                $harvest->string('Name'),
+                ...$harvest->media('Image'),
+                $harvest->upload('File', 'SVG File')->setAllowedExtensions('svg')->setDescription('has priority over the image field'),
+                $harvest->html('Text'),
+                $harvest->inlineLink('ALink', 'Link'),
+                $harvest->checkbox('Disabled')->setDescription('hide this item from the list'),
+            ],
+        ]);
+
+        $harvest->dataField('Image')->setFolderName('brands');
+        $harvest->dataField('File')->setFolderName('brands');
+    }
 
     public function getLogo()
     {
@@ -79,92 +73,4 @@ class BrandItem extends DataObject
 
         return $html;
     }
-
-    public function getCMSFields()
-    {
-        $fields = parent::getCMSFields();
-
-        $fields->removeByName([
-            'Image',
-            'File',
-            'Name',
-            'Text',
-            'ALinkID',
-            'Disabled',
-        ]);
-
-        $uploadFields = EditableUploadField::create('Image', 'Image', $fields, $this)->getFields();
-
-        // foreach($uploadFields as $fiKey => $fi)
-        // {
-        //     if (get_class($fi) == UploadField::class)
-        //     {
-        //         $uploadFields[$fiKey] = $fi->setAllowedExtensions(['svg']);
-        //     }
-        // }
-
-        $fields->addFieldsToTab(
-            'Root.Main',
-            [
-                ...[
-                    TextField::create('Name', 'Name'),
-                ],
-                ...$uploadFields,
-                ...[
-                    UploadField::create('File', 'SVG File')->setAllowedExtensions('svg')->setDescription('has priority over the image field'),
-                    HTMLEditorField::create('Text', 'Text'),
-                    AnyField::create('ALink', 'Link'),
-                    CheckboxField::create('Disabled','Disabled')->setDescription('hide this item from the list'),
-                ],
-            ]
-        );
-
-        $fields->dataFieldByName('Image')->setFolderName('brands');
-        $fields->dataFieldByName('File')->setFolderName('brands');
-
-        return $fields;
-    }
-
-    // public function validate()
-    // {
-    //     $result = parent::validate();
-
-    //     // $result->addError('Error message');
-
-    //     return $result;
-    // }
-
-    // public function onBeforeWrite()
-    // {
-    //     // ..
-
-    //     parent::onBeforeWrite();
-    // }
-
-    // public function onBeforeDelete()
-    // {
-    //     // ..
-
-    //     parent::onBeforeDelete();
-    // }
-
-    // public function canView($member = null)
-    // {
-    //     return Permission::check('CMS_ACCESS_Company\Website\MyAdmin', 'any', $member);
-    // }
-
-    // public function canEdit($member = null)
-    // {
-    //     return Permission::check('CMS_ACCESS_Company\Website\MyAdmin', 'any', $member);
-    // }
-
-    // public function canDelete($member = null)
-    // {
-    //     return Permission::check('CMS_ACCESS_Company\Website\MyAdmin', 'any', $member);
-    // }
-
-    // public function canCreate($member = null, $context = [])
-    // {
-    //     return Permission::check('CMS_ACCESS_Company\Website\MyAdmin', 'any', $member);
-    // }
 }
