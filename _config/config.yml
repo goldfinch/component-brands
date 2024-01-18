@@ -4,17 +4,13 @@ Name: goldfinch-component-brands
 Goldfinch\Component\Brands\Admin\BrandsAdmin:
   extensions:
     - Goldfinch\Helpers\Extensions\BlocksAdminExtension
-
 ---
 Name: goldfinch-component-brands-icon
 Only:
-  moduleexists: 'goldfinch/enchantment'
+  moduleexists: "goldfinch/enchantment"
 ---
-
 Goldfinch\Component\Brands\Admin\BrandsAdmin:
-  menu_icon_class: 'bi-google-play'
+  menu_icon_class: "bi-google-play"
 
 Goldfinch\Component\Brands\Blocks\BrandsBlock:
-  icon: 'bi-google-play'
-
-
+  icon: "bi-google-play"

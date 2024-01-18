@@ -39,9 +39,7 @@ class ComponentBrandsCommand extends GeneratorCommand
         $input = new ArrayInput(['name' => 'BrandsBlock']);
         $command->run($input, $output);
 
-        $command = $this->getApplication()->find(
-            'templates:component-brands',
-        );
+        $command = $this->getApplication()->find('templates:component-brands');
         $input = new ArrayInput([]);
         $command->run($input, $output);
 

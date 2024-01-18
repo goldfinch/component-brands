@@ -19,13 +19,13 @@ class BrandsAdmin extends ModelAdmin
 
     private static $managed_models = [
         BrandItem::class => [
-            'title'=> 'Brands',
+            'title' => 'Brands',
         ],
         BrandsBlock::class => [
-            'title'=> 'Blocks',
+            'title' => 'Blocks',
         ],
         BrandConfig::class => [
-            'title'=> 'Settings',
+            'title' => 'Settings',
         ],
     ];
 }

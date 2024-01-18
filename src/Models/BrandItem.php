@@ -27,10 +27,7 @@ class BrandItem extends DataObject
         'ALink' => Link::class,
     ];
 
-    private static $owns = [
-        'Image',
-        'File',
-    ];
+    private static $owns = ['Image', 'File'];
 
     private static $summary_fields = [
         'getLogo' => 'Logo',
@@ -47,10 +44,15 @@ class BrandItem extends DataObject
             'Root.Main' => [
                 $harvest->string('Name'),
                 ...$harvest->media('Image'),
-                $harvest->upload('File', 'SVG File')->setAllowedExtensions('svg')->setDescription('has priority over the image field'),
+                $harvest
+                    ->upload('File', 'SVG File')
+                    ->setAllowedExtensions('svg')
+                    ->setDescription('has priority over the image field'),
                 $harvest->html('Text'),
                 $harvest->inlineLink('ALink', 'Link'),
-                $harvest->checkbox('Disabled')->setDescription('hide this item from the list'),
+                $harvest
+                    ->checkbox('Disabled')
+                    ->setDescription('hide this item from the list'),
             ],
         ]);
 
@@ -62,13 +64,22 @@ class BrandItem extends DataObject
     {
         $html = DBHTMLText::create();
 
-        if ($this->File()->exists())
-        {
-            $html->setValue('<img src="' . $this->File()->getURL() . '" alt="' . $this->File()->Title . '" width="120">');
-        }
-        else if ($this->Image()->exists())
-        {
-            $html->setValue('<img src="' . $this->Image()->getURL() . '" alt="' . $this->Image()->Title . '" width="120">');
+        if ($this->File()->exists()) {
+            $html->setValue(
+                '<img src="' .
+                    $this->File()->getURL() .
+                    '" alt="' .
+                    $this->File()->Title .
+                    '" width="120">',
+            );
+        } elseif ($this->Image()->exists()) {
+            $html->setValue(
+                '<img src="' .
+                    $this->Image()->getURL() .
+                    '" alt="' .
+                    $this->Image()->Title .
+                    '" width="120">',
+            );
         }
 
         return $html;
