@@ -15,17 +15,13 @@ class BrandsBlock extends BaseElement
     private static $singular_name = 'Brands';
     private static $plural_name = 'Brands';
 
-    private static $db = [
-        // 'BlockTitle' => 'Varchar',
-        // 'BlockSubTitle' => 'Varchar',
-        // 'BlockText' => 'HTMLText',
-    ];
+    private static $db = [];
 
     private static $inline_editable = false;
     private static $description = '';
     private static $icon = 'font-icon-circle-star';
 
-    public function harvest(Harvest $harvest)
+    public function harvest(Harvest $harvest): void
     {
         // ..
     }

@@ -16,7 +16,7 @@ class BrandConfig extends DataObject implements TemplateGlobalProvider
 
     private static $db = [];
 
-    public function harvest(Harvest $harvest)
+    public function harvest(Harvest $harvest): void
     {
         // ..
     }
