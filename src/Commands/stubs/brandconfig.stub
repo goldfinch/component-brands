@@ -4,12 +4,12 @@ After: "goldfinch/component-brands"
 ---
 Goldfinch\Component\Brands\Models\Nest\BrandItem:
   extensions:
-    - {{ namespace_root }}BrandItemExtension
+    - {{ namespace_root_extensions }}BrandItemExtension
 
 Goldfinch\Component\Brands\Configs\BrandConfig:
   extensions:
-    - {{ namespace_root }}BrandConfigExtension
+    - {{ namespace_root_extensions }}BrandConfigExtension
 
 Goldfinch\Component\Brands\Blocks\BrandsBlock:
   extensions:
-    - {{ namespace_root }}BrandsBlockExtension
+    - {{ namespace_root_extensions }}BrandsBlockExtension
