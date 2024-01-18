@@ -22,12 +22,6 @@ class ComponentBrandsCommand extends GeneratorCommand
         $command->run($input, $output);
 
         $command = $this->getApplication()->find(
-            'vendor:component-brands:brandcategory',
-        );
-        $input = new ArrayInput(['name' => 'BrandCategory']);
-        $command->run($input, $output);
-
-        $command = $this->getApplication()->find(
             'vendor:component-brands:brandconfig',
         );
         $input = new ArrayInput(['name' => 'BrandConfig']);
