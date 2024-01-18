@@ -16,34 +16,34 @@ class ComponentBrandsCommand extends GeneratorCommand
     protected function execute($input, $output): int
     {
         $command = $this->getApplication()->find(
-            'vendor:component-brands-branditem',
+            'vendor:component-brands:branditem',
         );
         $input = new ArrayInput(['name' => 'BrandItem']);
         $command->run($input, $output);
 
         $command = $this->getApplication()->find(
-            'vendor:component-brands-brandcategory',
+            'vendor:component-brands:brandcategory',
         );
         $input = new ArrayInput(['name' => 'BrandCategory']);
         $command->run($input, $output);
 
         $command = $this->getApplication()->find(
-            'vendor:component-brands-brandconfig',
+            'vendor:component-brands:brandconfig',
         );
         $input = new ArrayInput(['name' => 'BrandConfig']);
         $command->run($input, $output);
 
         $command = $this->getApplication()->find(
-            'vendor:component-brands-brandsblock',
+            'vendor:component-brands:brandsblock',
         );
         $input = new ArrayInput(['name' => 'BrandsBlock']);
         $command->run($input, $output);
 
-        $command = $this->getApplication()->find('templates:component-brands');
+        $command = $this->getApplication()->find('vendor:component-brands:templates');
         $input = new ArrayInput([]);
         $command->run($input, $output);
 
-        $command = $this->getApplication()->find('config:component-brands');
+        $command = $this->getApplication()->find('vendor:component-brands:config');
         $input = new ArrayInput(['name' => 'component-brands']);
         $command->run($input, $output);
 
