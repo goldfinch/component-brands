@@ -3,10 +3,12 @@
 namespace Goldfinch\Component\Brands\Models;
 
 use SilverStripe\Assets\File;
+use Goldfinch\Harvest\Harvest;
 use SilverStripe\Assets\Image;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\LinkField\Models\Link;
 use SilverStripe\ORM\FieldType\DBHTMLText;
+use Goldfinch\Component\Brands\Configs\BrandConfig;
 
 class BrandItem extends DataObject
 {
@@ -58,6 +60,12 @@ class BrandItem extends DataObject
 
         $harvest->dataField('Image')->setFolderName('brands');
         $harvest->dataField('File')->setFolderName('brands');
+
+        $cfg = BrandConfig::current_config();
+
+        if (!$cfg->EnabledImageUpload) {
+            $harvest->remove('Image');
+        }
     }
 
     public function getLogo()

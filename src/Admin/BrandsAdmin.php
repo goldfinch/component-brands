@@ -28,4 +28,21 @@ class BrandsAdmin extends ModelAdmin
             'title' => 'Settings',
         ],
     ];
+
+    public function getManagedModels()
+    {
+        $models = parent::getManagedModels();
+
+        $cfg = BrandConfig::current_config();
+
+        if (!class_exists('DNADesign\Elemental\Models\BaseElement')) {
+            unset($models[BrandsBlock::class]);
+        }
+
+        if (empty($cfg->config('db')->db)) {
+            unset($models[BrandConfig::class]);
+        }
+
+        return $models;
+    }
 }

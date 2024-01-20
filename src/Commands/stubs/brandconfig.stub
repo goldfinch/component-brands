@@ -2,7 +2,7 @@
 Name: app-{{ class }}
 After: "goldfinch/component-brands"
 ---
-Goldfinch\Component\Brands\Models\Nest\BrandItem:
+Goldfinch\Component\Brands\Models\BrandItem:
   extensions:
     - {{ namespace_root_extensions }}BrandItemExtension
 

@@ -14,10 +14,16 @@ class BrandConfig extends DataObject implements TemplateGlobalProvider
 
     private static $table_name = 'BrandConfig';
 
-    private static $db = [];
+    private static $db = [
+        'EnabledImageUpload' => 'Boolean',
+    ];
 
     public function harvest(Harvest $harvest): void
     {
-        // ..
+        $harvest->fields([
+            'Root.Main' => [
+                $harvest->checkbox('EnabledImageUpload', 'Enable Image upload')->setDescription('when it\'s disabled, only SVG upload available'),
+            ],
+        ]);
     }
 }
