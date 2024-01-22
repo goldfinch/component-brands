@@ -2,14 +2,20 @@
 Name: app-{{ class }}
 After: "goldfinch/component-brands"
 ---
-Goldfinch\Component\Brands\Models\BrandItem:
+Goldfinch\Component\Brands\Configs\BrandAdmin:
+  # menu_icon_class: ""
   extensions:
-    - {{ namespace_root_extensions }}BrandItemExtension
+    - {{ namespace_root_extensions }}BrandAdminExtension
 
 Goldfinch\Component\Brands\Configs\BrandConfig:
   extensions:
     - {{ namespace_root_extensions }}BrandConfigExtension
 
 Goldfinch\Component\Brands\Blocks\BrandsBlock:
+  # icon: ""
   extensions:
     - {{ namespace_root_extensions }}BrandsBlockExtension
+
+Goldfinch\Component\Brands\Models\BrandItem:
+  extensions:
+    - {{ namespace_root_extensions }}BrandItemExtension
