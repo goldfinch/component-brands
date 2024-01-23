@@ -3,6 +3,7 @@ Name: app-{{ class }}
 After: "goldfinch/component-brands"
 ---
 Goldfinch\Component\Brands\Configs\BrandAdmin:
+  # menu_priority: 1
   # menu_icon_class: ""
   extensions:
     - {{ namespace_root_extensions }}BrandAdminExtension

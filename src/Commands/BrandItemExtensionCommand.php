@@ -14,7 +14,7 @@ class BrandItemExtensionCommand extends GeneratorCommand
 
     protected $path = '[psr4]/Extensions';
 
-    protected $type = 'component-brands item extension';
+    protected $type = 'extension';
 
     protected $stub = './stubs/branditem-extension.stub';
 
