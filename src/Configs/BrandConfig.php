@@ -2,15 +2,15 @@
 
 namespace Goldfinch\Component\Brands\Configs;
 
-use Goldfinch\Harvest\Harvest;
+use Goldfinch\Fielder\Fielder;
 use JonoM\SomeConfig\SomeConfig;
 use SilverStripe\ORM\DataObject;
-use Goldfinch\Harvest\Traits\HarvestTrait;
+use Goldfinch\Fielder\Traits\FielderTrait;
 use SilverStripe\View\TemplateGlobalProvider;
 
 class BrandConfig extends DataObject implements TemplateGlobalProvider
 {
-    use SomeConfig, HarvestTrait;
+    use SomeConfig, FielderTrait;
 
     private static $table_name = 'BrandConfig';
 
@@ -18,11 +18,11 @@ class BrandConfig extends DataObject implements TemplateGlobalProvider
         'EnabledImageUpload' => 'Boolean',
     ];
 
-    public function harvest(Harvest $harvest): void
+    public function fielder(Fielder $fielder): void
     {
-        $harvest->fields([
+        $fielder->fields([
             'Root.Main' => [
-                $harvest->checkbox('EnabledImageUpload', 'Enable Image upload')->setDescription('when it\'s disabled, only SVG upload available'),
+                $fielder->checkbox('EnabledImageUpload', 'Enable Image upload')->setDescription('when it\'s disabled, only SVG upload available'),
             ],
         ]);
     }

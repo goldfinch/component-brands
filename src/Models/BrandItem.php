@@ -3,7 +3,7 @@
 namespace Goldfinch\Component\Brands\Models;
 
 use SilverStripe\Assets\File;
-use Goldfinch\Harvest\Harvest;
+use Goldfinch\Fielder\Fielder;
 use SilverStripe\Assets\Image;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\LinkField\Models\Link;
@@ -38,33 +38,33 @@ class BrandItem extends DataObject
         'Disabled.NiceAsBoolean' => 'Disabled',
     ];
 
-    public function harvest(Harvest $harvest): void
+    public function fielder(Fielder $fielder): void
     {
-        $harvest->require(['Name']);
+        $fielder->require(['Name']);
 
-        $harvest->fields([
+        $fielder->fields([
             'Root.Main' => [
-                $harvest->string('Name'),
-                ...$harvest->media('Image'),
-                $harvest
+                $fielder->string('Name'),
+                ...$fielder->media('Image'),
+                $fielder
                     ->upload('File', 'SVG File')
                     ->setAllowedExtensions('svg')
                     ->setDescription('has priority over the image field'),
-                $harvest->html('Text'),
-                $harvest->inlineLink('ALink', 'Link'),
-                $harvest
+                $fielder->html('Text'),
+                $fielder->inlineLink('ALink', 'Link'),
+                $fielder
                     ->checkbox('Disabled')
                     ->setDescription('hide this item from the list'),
             ],
         ]);
 
-        $harvest->dataField('Image')->setFolderName('brands');
-        $harvest->dataField('File')->setFolderName('brands');
+        $fielder->dataField('Image')->setFolderName('brands');
+        $fielder->dataField('File')->setFolderName('brands');
 
         $cfg = BrandConfig::current_config();
 
         if (!$cfg->EnabledImageUpload) {
-            $harvest->remove('Image');
+            $fielder->remove('Image');
         }
     }
 

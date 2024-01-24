@@ -2,14 +2,14 @@
 
 namespace Goldfinch\Component\Brands\Blocks;
 
-use Goldfinch\Harvest\Harvest;
-use Goldfinch\Harvest\Traits\HarvestTrait;
+use Goldfinch\Fielder\Fielder;
+use Goldfinch\Fielder\Traits\FielderTrait;
 use DNADesign\Elemental\Models\BaseElement;
 use Goldfinch\Component\Brands\Models\BrandItem;
 
 class BrandsBlock extends BaseElement
 {
-    use HarvestTrait;
+    use FielderTrait;
 
     private static $table_name = 'BrandsBlock';
     private static $singular_name = 'Brands';
@@ -21,7 +21,7 @@ class BrandsBlock extends BaseElement
     private static $description = '';
     private static $icon = 'font-icon-circle-star';
 
-    public function harvest(Harvest $harvest): void
+    public function fielder(Fielder $fielder): void
     {
         // ..
     }
