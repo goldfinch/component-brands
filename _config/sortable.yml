@@ -4,3 +4,7 @@ Name: goldfinch-component-brands-sortable
 Goldfinch\Component\Brands\Models\BrandItem:
   extensions:
     - Goldfinch\Helpers\Extensions\DataObjectSortable
+
+Goldfinch\Component\Brands\Models\BrandCategory:
+  extensions:
+    - Goldfinch\Helpers\Extensions\DataObjectSortable

@@ -3,16 +3,18 @@
 namespace Goldfinch\Component\Brands\Blocks;
 
 use Goldfinch\Fielder\Fielder;
+use Goldfinch\Mill\Traits\Millable;
 use Goldfinch\Fielder\Traits\FielderTrait;
 use DNADesign\Elemental\Models\BaseElement;
 use Goldfinch\Component\Brands\Models\BrandItem;
+use Goldfinch\Component\Brands\Models\BrandCategory;
 
 class BrandsBlock extends BaseElement
 {
-    use FielderTrait;
+    use FielderTrait, Millable;
 
     private static $table_name = 'BrandsBlock';
-    private static $singular_name = 'Brands';
+    private static $singular_name = 'Brand';
     private static $plural_name = 'Brands';
 
     private static $db = [];
@@ -29,6 +31,11 @@ class BrandsBlock extends BaseElement
     public function Items()
     {
         return BrandItem::get();
+    }
+
+    public function Categories()
+    {
+        return BrandCategory::get();
     }
 
     public function getSummary()

@@ -4,6 +4,15 @@ Name: goldfinch-component-brands
 Goldfinch\Component\Brands\Admin\BrandsAdmin:
   extensions:
     - Goldfinch\Helpers\Extensions\BlocksAdminExtension
+
+Goldfinch\Component\Brands\Models\BrandItem:
+  extensions:
+    - Goldfinch\Helpers\Extensions\DataObjectSluggable
+
+Goldfinch\Component\Brands\Models\BrandCategory:
+  extensions:
+    - Goldfinch\Helpers\Extensions\DataObjectSluggable
+
 ---
 Name: goldfinch-component-brands-icon
 Only:

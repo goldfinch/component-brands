@@ -1,0 +1,15 @@
+<?php
+{{ namespace }}
+use Goldfinch\Fielder\Fielder;
+use SilverStripe\ORM\DataExtension;
+
+class {{ class }}Extension extends DataExtension
+{
+    private static $db = [];
+
+    public function updateFielder(Fielder $fielder): void
+    {
+        // $fielder->require([]);
+        // $fielder->freshFields(['Root.Main' => []]);
+    }
+}

@@ -7,6 +7,7 @@ use JonoM\SomeConfig\SomeConfigAdmin;
 use Goldfinch\Component\Brands\Models\BrandItem;
 use Goldfinch\Component\Brands\Blocks\BrandsBlock;
 use Goldfinch\Component\Brands\Configs\BrandConfig;
+use Goldfinch\Component\Brands\Models\BrandCategory;
 
 class BrandsAdmin extends ModelAdmin
 {
@@ -34,6 +35,10 @@ class BrandsAdmin extends ModelAdmin
         $models = parent::getManagedModels();
 
         $cfg = BrandConfig::current_config();
+
+        if ($cfg->DisabledCategories) {
+            unset($models[BrandCategory::class]);
+        }
 
         if (!class_exists('DNADesign\Elemental\Models\BaseElement')) {
             unset($models[BrandsBlock::class]);

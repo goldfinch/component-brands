@@ -41,11 +41,19 @@ class BrandsSetCommand extends GeneratorCommand
         $input = new ArrayInput(['name' => 'BrandItem']);
         $command->run($input, $output);
 
+        $command = $this->getApplication()->find(
+            'vendor:component-brands:ext:category',
+        );
+        $input = new ArrayInput(['name' => 'BrandCategory']);
+        $command->run($input, $output);
+
         $command = $this->getApplication()->find('vendor:component-brands:config');
         $input = new ArrayInput(['name' => 'component-brands']);
         $command->run($input, $output);
 
-        $command = $this->getApplication()->find('vendor:component-brands:templates');
+        $command = $this->getApplication()->find(
+            'vendor:component-brands:templates',
+        );
         $input = new ArrayInput([]);
         $command->run($input, $output);
 

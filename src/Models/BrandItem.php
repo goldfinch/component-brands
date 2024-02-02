@@ -12,6 +12,8 @@ use Goldfinch\Component\Brands\Configs\BrandConfig;
 
 class BrandItem extends DataObject
 {
+    use FielderTrait, Millable;
+
     private static $table_name = 'BrandItem';
     private static $singular_name = 'brand';
     private static $plural_name = 'brands';
@@ -29,13 +31,20 @@ class BrandItem extends DataObject
         'ALink' => Link::class,
     ];
 
-    private static $owns = ['Image', 'File'];
+    private static $many_many_extraFields = [
+        'Categories' => [
+            'SortExtra' => 'Int',
+        ],
+    ];
+
+    private static $owns = ['Image', 'File', 'Categories'];
 
     private static $summary_fields = [
         'getLogo' => 'Logo',
         'Name' => 'Name',
         'Text.Summary' => 'Text',
         'Disabled.NiceAsBoolean' => 'Disabled',
+        'Categories.Count' => 'Categories',
     ];
 
     public function fielder(Fielder $fielder): void
@@ -63,9 +72,37 @@ class BrandItem extends DataObject
 
         $cfg = BrandConfig::current_config();
 
+        if ($cfg->DisabledCategories) {
+            $fielder->remove('Categories');
+        } else {
+            $fielder->fields([
+                'Root.Main' => [$fielder->tag('Categories')],
+            ]);
+        }
+
+    }
+
+    private static $field_descriptions = [
+        'Disabled' => 'hide this item from the list',
+    ];
+
+    private static $urlsegment_source = 'Question';
+
+    public function summaryFields()
+    {
+        $fields = parent::summaryFields();
+
+        $cfg = BrandConfig::current_config();
+
         if (!$cfg->EnabledImageUpload) {
             $fielder->remove('Image');
         }
+
+        if ($cfg->DisabledCategories) {
+            unset($fields['Categories.Count']);
+        }
+
+        return $fields;
     }
 
     public function getLogo()

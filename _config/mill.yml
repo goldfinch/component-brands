@@ -1,0 +1,9 @@
+---
+Name: goldfinch-component-brands-mill
+After: "goldfinch/mill"
+---
+Goldfinch\Mill\Mill:
+  millable:
+    Goldfinch\Component\Brands\Mills\BrandCategoryMill: Goldfinch\Component\Brands\Models\BrandCategory
+    Goldfinch\Component\Brands\Mills\BrandItemMill: Goldfinch\Component\Brands\Models\BrandItem
+    Goldfinch\Component\Brands\Mills\BrandsBlockMill: Goldfinch\Component\Brands\Blocks\BrandsBlock

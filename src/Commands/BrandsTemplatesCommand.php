@@ -22,8 +22,10 @@ class BrandsTemplatesCommand extends GeneratorCommand
 
         if (is_string($theme)) {
 
-            $componentPath = BASE_PATH . '/vendor/goldfinch/component-brands/templates/Goldfinch/Component/Brands/';
-            $themePath = 'themes/' . $theme . '/templates/Goldfinch/Component/Brands/';
+            $componentPathTemplates = BASE_PATH . '/vendor/goldfinch/component-brands/templates/';
+            $componentPath = $componentPathTemplates . 'Goldfinch/Component/Brands/';
+            $themeTemplates = 'themes/' . $theme . '/templates/';
+            $themePath = $themeTemplates . 'Goldfinch/Component/Brands/';
 
             $files = [
                 [
