@@ -25,7 +25,6 @@ class BrandItem extends DataObject
         'Name' => 'Varchar',
         'Text' => 'HTMLText',
         'Disabled' => 'Boolean',
-        'SortOrder' => 'Int',
     ];
 
     private static $has_one = [
@@ -54,6 +53,8 @@ class BrandItem extends DataObject
         'Categories.Count' => 'Categories',
     ];
 
+    private static $urlsegment_source = 'Name';
+
     public function fielder(Fielder $fielder): void
     {
         $fielder->require(['Name']);
@@ -68,6 +69,7 @@ class BrandItem extends DataObject
                     ->setDescription('has priority over the image field'),
                 $fielder->html('Text'),
                 $fielder->inlineLink('ALink', 'Link'),
+                $fielder->tag('Categories'),
                 $fielder
                     ->checkbox('Disabled')
                     ->setDescription('hide this item from the list'),
@@ -81,10 +83,6 @@ class BrandItem extends DataObject
 
         if ($cfg->DisabledCategories) {
             $fielder->remove('Categories');
-        } else {
-            $fielder->fields([
-                'Root.Main' => [$fielder->tag('Categories')],
-            ]);
         }
 
         if (!$cfg->EnabledImageUpload) {
@@ -92,12 +90,6 @@ class BrandItem extends DataObject
         }
 
     }
-
-    private static $field_descriptions = [
-        'Disabled' => 'hide this item from the list',
-    ];
-
-    private static $urlsegment_source = 'Name';
 
     public function getLogo()
     {
