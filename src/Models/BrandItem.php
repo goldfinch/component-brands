@@ -6,9 +6,12 @@ use SilverStripe\Assets\File;
 use Goldfinch\Fielder\Fielder;
 use SilverStripe\Assets\Image;
 use SilverStripe\ORM\DataObject;
+use Goldfinch\Mill\Traits\Millable;
 use SilverStripe\LinkField\Models\Link;
+use Goldfinch\Fielder\Traits\FielderTrait;
 use SilverStripe\ORM\FieldType\DBHTMLText;
 use Goldfinch\Component\Brands\Configs\BrandConfig;
+use Goldfinch\Component\Brands\Models\BrandCategory;
 
 class BrandItem extends DataObject
 {
@@ -29,6 +32,10 @@ class BrandItem extends DataObject
         'Image' => Image::class,
         'File' => File::class,
         'ALink' => Link::class,
+    ];
+
+    private static $many_many = [
+        'Categories' => BrandCategory::class,
     ];
 
     private static $many_many_extraFields = [
@@ -80,30 +87,17 @@ class BrandItem extends DataObject
             ]);
         }
 
+        if (!$cfg->EnabledImageUpload) {
+            $fielder->remove('Image');
+        }
+
     }
 
     private static $field_descriptions = [
         'Disabled' => 'hide this item from the list',
     ];
 
-    private static $urlsegment_source = 'Question';
-
-    public function summaryFields()
-    {
-        $fields = parent::summaryFields();
-
-        $cfg = BrandConfig::current_config();
-
-        if (!$cfg->EnabledImageUpload) {
-            $fielder->remove('Image');
-        }
-
-        if ($cfg->DisabledCategories) {
-            unset($fields['Categories.Count']);
-        }
-
-        return $fields;
-    }
+    private static $urlsegment_source = 'Name';
 
     public function getLogo()
     {

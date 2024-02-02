@@ -4,7 +4,7 @@
     <ul>
       <% loop Items %>
         <% if not Disabled %>
-          <li data-id="{$URLSegment}"><a href="#{$URLSegment}">$Question</a></li>
+          <li data-id="{$URLSegment}"><a href="#{$URLSegment}">$Name</a></li>
         <% end_if %>
       <% end_loop %>
     </ul>

@@ -4,7 +4,7 @@ namespace Goldfinch\Component\Brands\Mills;
 
 use Goldfinch\Mill\Mill;
 
-class BrandCategoryMill extends Mill
+class BrandsBlockMill extends Mill
 {
     public function factory(): array
     {

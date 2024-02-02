@@ -16,7 +16,7 @@ class BrandCategoryExtensionCommand extends GeneratorCommand
 
     protected $type = 'extension';
 
-    protected $stub = './stubs/brandscategory-extension.stub';
+    protected $stub = './stubs/brandcategory-extension.stub';
 
     protected $prefix = 'Extension';
 

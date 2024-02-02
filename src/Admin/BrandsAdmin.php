@@ -22,6 +22,9 @@ class BrandsAdmin extends ModelAdmin
         BrandItem::class => [
             'title' => 'Brands',
         ],
+        BrandCategory::class => [
+            'title' => 'Categories',
+        ],
         BrandsBlock::class => [
             'title' => 'Blocks',
         ],
