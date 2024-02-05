@@ -57,7 +57,7 @@ class BrandItem extends DataObject
 
     public function fielder(Fielder $fielder): void
     {
-        $fielder->require(['Name']);
+        $fielder->required(['Name']);
 
         $fielder->fields([
             'Root.Main' => [
