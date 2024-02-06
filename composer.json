@@ -18,11 +18,11 @@
         "goldfinch/fielder": "^1.0",
         "goldfinch/helpers": "^1.0",
         "goldfinch/image-editor": "^1.0",
+        "goldfinch/blocks": "^1.0",
         "silverstripe/tagfield": "^3.0",
         "jonom/silverstripe-someconfig": "^1.0",
         "maxime-rainville/anyfield": "^0.0.0",
-        "silverstripe/linkfield": "^3",
-        "dnadesign/silverstripe-elemental": "^5.0"
+        "silverstripe/linkfield": "^3"
     },
     "autoload": {
         "psr-4": {
