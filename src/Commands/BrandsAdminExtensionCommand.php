@@ -3,7 +3,6 @@
 namespace Goldfinch\Component\Brands\Commands;
 
 use Goldfinch\Taz\Console\GeneratorCommand;
-use Symfony\Component\Console\Command\Command;
 
 #[AsCommand(name: 'vendor:component-brands:ext:admin')]
 class BrandsAdminExtensionCommand extends GeneratorCommand
@@ -19,11 +18,4 @@ class BrandsAdminExtensionCommand extends GeneratorCommand
     protected $stub = './stubs/brandsadmin-extension.stub';
 
     protected $prefix = 'Extension';
-
-    protected function execute($input, $output): int
-    {
-        parent::execute($input, $output);
-
-        return Command::SUCCESS;
-    }
 }
