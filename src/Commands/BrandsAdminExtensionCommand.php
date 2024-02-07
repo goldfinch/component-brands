@@ -17,5 +17,5 @@ class BrandsAdminExtensionCommand extends GeneratorCommand
 
     protected $stub = './stubs/brandsadmin-extension.stub';
 
-    protected $prefix = 'Extension';
+    protected $suffix = 'Extension';
 }

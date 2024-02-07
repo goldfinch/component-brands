@@ -17,5 +17,5 @@ class BrandConfigExtensionCommand extends GeneratorCommand
 
     protected $stub = './stubs/brandconfig-extension.stub';
 
-    protected $prefix = 'Extension';
+    protected $suffix = 'Extension';
 }
