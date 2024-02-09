@@ -5,6 +5,10 @@ Goldfinch\Component\Brands\Admin\BrandsAdmin:
   extensions:
     - Goldfinch\Helpers\Extensions\BlocksAdminExtension
 
+Goldfinch\Component\Brands\Blocks\BrandsBlock:
+  extensions:
+    - Goldfinch\Helpers\Extensions\BaseElementExtension
+
 Goldfinch\Component\Brands\Models\BrandItem:
   extensions:
     - Goldfinch\Helpers\Extensions\DataObjectSluggable

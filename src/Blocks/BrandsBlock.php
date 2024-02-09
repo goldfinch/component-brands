@@ -2,11 +2,11 @@
 
 namespace Goldfinch\Component\Brands\Blocks;
 
-use Goldfinch\Blocks\Models\BlockElement;
+use DNADesign\Elemental\Models\BaseElement;
 use Goldfinch\Component\Brands\Models\BrandItem;
 use Goldfinch\Component\Brands\Models\BrandCategory;
 
-class BrandsBlock extends BlockElement
+class BrandsBlock extends BaseElement
 {
     private static $table_name = 'BrandsBlock';
     private static $singular_name = 'Brand';
@@ -15,7 +15,7 @@ class BrandsBlock extends BlockElement
     private static $db = [];
 
     private static $inline_editable = false;
-    private static $description = '';
+    private static $description = 'Brands block handler';
     private static $icon = 'font-icon-circle-star';
 
     public function Items()
