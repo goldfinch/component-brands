@@ -46,14 +46,20 @@ class BrandItem extends DataObject
     private static $owns = ['Image', 'File', 'Categories'];
 
     private static $summary_fields = [
-        'getLogo' => 'Logo',
-        'Name' => 'Name',
-        'Text.Summary' => 'Text',
         'Disabled.NiceAsBoolean' => 'Disabled',
         'Categories.Count' => 'Categories',
     ];
 
     private static $urlsegment_source = 'Name';
+
+    public function updateGridItemSummaryList(&$list)
+    {
+        if ($this->File()->exists()) {
+            $list['Image'] = '<img src="'.$this->File()->getURL().'" width="100" height="100" alt="Logo">';
+        } else {
+            $list['Image'] = $this->Image()->CMSThumbnail();
+        }
+    }
 
     public function fielder(Fielder $fielder): void
     {

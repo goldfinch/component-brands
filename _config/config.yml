@@ -12,6 +12,7 @@ Goldfinch\Component\Brands\Blocks\BrandsBlock:
 Goldfinch\Component\Brands\Models\BrandItem:
   extensions:
     - Goldfinch\Helpers\Extensions\DataObjectSluggable
+    - Goldfinch\Helpers\Extensions\SummaryFieldExtension
 
 Goldfinch\Component\Brands\Models\BrandCategory:
   extensions:
