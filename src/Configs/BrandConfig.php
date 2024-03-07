@@ -2,15 +2,13 @@
 
 namespace Goldfinch\Component\Brands\Configs;
 
-use Goldfinch\Fielder\Fielder;
 use JonoM\SomeConfig\SomeConfig;
 use SilverStripe\ORM\DataObject;
-use Goldfinch\Fielder\Traits\FielderTrait;
 use SilverStripe\View\TemplateGlobalProvider;
 
 class BrandConfig extends DataObject implements TemplateGlobalProvider
 {
-    use SomeConfig, FielderTrait;
+    use SomeConfig;
 
     private static $table_name = 'BrandConfig';
 
@@ -19,13 +17,19 @@ class BrandConfig extends DataObject implements TemplateGlobalProvider
         'DisabledCategories' => 'Boolean',
     ];
 
-    public function fielder(Fielder $fielder): void
+    public function getCMSFields()
     {
+        $fields = parent::getCMSFields();
+
+        $fielder = $fields->fielder($this);
+
         $fielder->fields([
             'Root.Main' => [
                 $fielder->checkbox('EnabledImageUpload', 'Enable Image upload')->setDescription('when it\'s disabled, only SVG upload available'),
                 $fielder->checkbox('DisabledCategories', 'Disabled categories'),
             ],
         ]);
+
+        return $fields;
     }
 }

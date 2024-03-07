@@ -3,19 +3,17 @@
 namespace Goldfinch\Component\Brands\Models;
 
 use SilverStripe\Assets\File;
-use Goldfinch\Fielder\Fielder;
 use SilverStripe\Assets\Image;
 use SilverStripe\ORM\DataObject;
 use Goldfinch\Mill\Traits\Millable;
 use SilverStripe\LinkField\Models\Link;
-use Goldfinch\Fielder\Traits\FielderTrait;
 use SilverStripe\ORM\FieldType\DBHTMLText;
 use Goldfinch\Component\Brands\Configs\BrandConfig;
 use Goldfinch\Component\Brands\Models\BrandCategory;
 
 class BrandItem extends DataObject
 {
-    use FielderTrait, Millable;
+    use Millable;
 
     private static $table_name = 'BrandItem';
     private static $singular_name = 'brand';
@@ -61,8 +59,12 @@ class BrandItem extends DataObject
         }
     }
 
-    public function fielder(Fielder $fielder): void
+    public function getCMSFields()
     {
+        $fields = parent::getCMSFields();
+
+        $fielder = $fields->fielder($this);
+
         $fielder->required(['Name']);
 
         $fielder->fields([
@@ -95,6 +97,7 @@ class BrandItem extends DataObject
             $fielder->remove('Image');
         }
 
+        return $fields;
     }
 
     public function getLogo()
