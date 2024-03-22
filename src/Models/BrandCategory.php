@@ -38,6 +38,8 @@ class BrandCategory extends DataObject
             'Root.Main' => [$fielder->string('Title')],
         ]);
 
+        $this->extend('updateCMSFields', $fields);
+
         return $fields;
     }
 }

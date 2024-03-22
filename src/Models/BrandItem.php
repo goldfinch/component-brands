@@ -76,7 +76,7 @@ class BrandItem extends DataObject
                     ->setAllowedExtensions('svg')
                     ->setDescription('has priority over the image field'),
                 $fielder->html('Text'),
-                $fielder->inlineLink('ALink', 'Link'),
+                $fielder->link('ALink', 'Link'),
                 $fielder->tag('Categories'),
                 $fielder
                     ->checkbox('Disabled')
@@ -96,6 +96,8 @@ class BrandItem extends DataObject
         if (!$cfg->EnabledImageUpload) {
             $fielder->remove('Image');
         }
+
+        $this->extend('updateCMSFields', $fields);
 
         return $fields;
     }
