@@ -2,7 +2,9 @@
     "name": "goldfinch/component-brands",
     "description": "",
     "type": "silverstripe-vendormodule",
-    "keywords": ["silverstripe"],
+    "keywords": [
+        "silverstripe"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -23,7 +25,7 @@
         "silverstripe/tagfield": "^3.0",
         "jonom/silverstripe-someconfig": "^1.0",
         "maxime-rainville/anyfield": "^0.0.0",
-        "silverstripe/linkfield": "^3",
+        "silverstripe/linkfield": "^3||^4",
         "dnadesign/silverstripe-elemental": "^5.0"
     },
     "autoload": {
